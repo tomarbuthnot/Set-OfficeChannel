@@ -30,7 +30,8 @@ function Show-Menu
            [string]$Title =  '  Set your Office 2016 Click to Run Channel  ',
            [string]$Title2 = "By Tom Arbuthnot tomtalks.uk Use at your own risk"
      )
-     cls
+     Write-host ""
+     write-host ""
      Write-Host "================ $Title ================"
      Write-Host "=============== $Title2 ============="
      Write-host " "
@@ -50,23 +51,23 @@ function Show-Menu
      switch ($input)
      {
            '1' {
-                cls
+                
                 'You chose option #1 - Office Insider Fast – weekly builds, not generally supported (Insiderfast)'
                 $Channel = "Insiderfast"
            } '2' {
-                cls
+                
                 'You chose option #2 - Office Insider Slow / First Release Channel (FirstReleaseCurrent)'
                 $Channel = "FirstReleaseCurrent"
            } '3' {
-                cls
+                
                 'You chose option #3 - Current Channel (Current)'
                 $Channel = "Current"
              } '4' {
-                cls
+                
                 'You chose option #4 - First Release for Deferred Channel (Validation)'
                 $Channel = "Validation"
              } '5' {
-                cls
+                
                 'You chose option #5- for Deferred Channel (previously Current Branch for Business) (Business)'
                 $Channel = "Business"
            } 'q' {
@@ -74,7 +75,10 @@ function Show-Menu
            }
      }
 
-
+ 
+# If Channel Variable is set, set the registry key  
+IF ($Channel -ne $null)
+{    
 Write-Host " "
 write-host "Setting Registry Key"
 
@@ -87,6 +91,7 @@ New-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\office\16.0\common\offi
 # Force Update
 
 $UpdateEXE = "C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeC2RClient.exe"
-$UpdateArguements = "/update user updatepromptuser=false displaylevel=true"
+$UpdateArguements = "/update user displaylevel=true"
 
-start-process $UpdateEXE $UpdateArguements 
+start-process $UpdateEXE $UpdateArguements
+} 
