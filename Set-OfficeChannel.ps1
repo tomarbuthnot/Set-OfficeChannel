@@ -65,7 +65,7 @@ function Show-Menu
              } '4' {
                 
                 'You chose option #4 - First Release for Deferred Channel (Validation)'
-                $Channel = "Validation"
+                $Channel = "FirstReleaseDeferred"
              } '5' {
                 
                 'You chose option #5- for Deferred Channel (previously Current Branch for Business) (Business)'
